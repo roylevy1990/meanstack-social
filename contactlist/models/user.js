@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const fs = require('fs');
 const UserSchema = mongoose.Schema({
     first_name: {
         type: String,
@@ -21,11 +21,31 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    avatar: {
+        data: Buffer,
+        contetTpye: String,
+        path: String
+    },
+    friends_list: {
+        type: []
     }
+
 });
 
 // mongodb://localhost:27017/contactlist
 const User = module.exports = mongoose.model('User', UserSchema);
+
+module.exports.addAvatar = function(username, path, callback) {
+    User.findOneAndUpdate({ username: username }, { $set: { avatar: path } }, { new: true }, function(err, doc) {
+        if (err) {
+            console.log("couldnt update avatar for username " + username);
+        }
+        console.log(doc);
+    })
+}
+
+
 
 module.exports.getUserById = function(id, callback) {
     User.findById(id, callback);

@@ -1,18 +1,21 @@
 {
-  "name": "contactlist",
-  "version": "1.0.0",
-  "description": "simple mean application",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "roy levy",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "cors": "^2.8.3",
-    "express": "^4.15.3",
-    "mongoose": "^4.11.1",
-    "bcryptjs":"*"
-  }
+    "name": "dobble-mean-social-network",
+    "version": "1.0.0",
+    "description": "simple mean application",
+    "main": "app.js",
+    "scripts": {
+        // "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node app.js"
+    },
+    "author": "roy levy",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "*",
+        "body-parser": "^1.17.2",
+        "cors": "^2.8.3",
+        "express": "^4.15.3",
+        "fs": "0.0.1-security",
+        "mongoose": "^4.11.1",
+        "multer": "^1.3.0"
+    }
 }
