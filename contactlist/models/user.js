@@ -23,9 +23,7 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     avatar: {
-        data: Buffer,
-        contetTpye: String,
-        path: String
+        url: String
     },
     friends_list: {
         type: []
@@ -36,12 +34,11 @@ const UserSchema = mongoose.Schema({
 // mongodb://localhost:27017/contactlist
 const User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.addAvatar = function(username, path, callback) {
-    User.findOneAndUpdate({ username: username }, { $set: { avatar: path } }, { new: true }, function(err, doc) {
+module.exports.updateAvatar = function(username, url, callback) {
+    User.findOneAndUpdate({ username: username }, { $set: { url: url } }, { new: true }, function(err, doc) {
         if (err) {
             console.log("couldnt update avatar for username " + username);
         }
-        console.log(doc);
     })
 }
 

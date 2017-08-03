@@ -8,62 +8,55 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const fs = require('fs');
 const multer = require('multer');
+var firebase = require("firebase");
 // models
 const Contact = require('../models/contacts');
 const User = require('../models/user');
 
 
+// const multerStorage = multer.diskStorage({
+// destination: function(req, file, cb) {
+//     cb(null, 'uploads')
+// },
+//     destination: '../public/uploads',
+//     filename: function(req, file, cb) {
+//         // this wil automatically delete the old image.
+//         cb(null, file.originalname + '-avatar' + '.jpg')
 
-const storage = multer.diskStorage({
-    // destination: function(req, file, cb) {
-    //     cb(null, 'uploads')
-    // },
-    destination: 'uploads',
-    filename: function(req, file, cb) {
-        // this wil automatically delete the old image.
-        cb(null, file.originalname + '-avatar' + '.jpg')
+//     }
+// });
 
-    }
-});
-
-const upload = multer({ storage: storage }).single('avatar');
+// const upload = multer({ storage: multerStorage }).single('avatar');
 // const upload = multer({ storage: storage }).single();
 
-router.post('/upload_avatar', function(req, res) {
+// router.post('/upload_avatar/', function(req, res) {
 
-    upload(req, res, function(err) {
-        var username = req.file.originalname;
-        var path = req.file.path;
-        console.log(req.file);
-        User.addAvatar(username, path, function(err, user) {
-            if (err) {
-                throw err
-            }
-            if (!user) {
-                console.log("could not find user");
-            }
-            console.log(user);
-        });
-        if (err) {
-            // An error occurred when uploading
-            throw err;
-        }
-        res.json({
-            sucess: true,
-            message: 'Image was uploaded successfully'
-        });
-        // Everything went fine
-        console.log('file uploaded successfully');
-    })
-});
+//     upload(req, res, function(err) {
+//         var username = req.file.originalname;
+//         var path = req.file.path;
+//         User.addAvatar(username, path, function(err, user) {
+//             if (err) {
+//                 throw err
+//             }
+//             if (!user) {
+//                 console.log("could not find user");
+//             }
+//         });
+//         if (err) {
+//             // An error occurred when uploading
+//             throw err;
+//         }
+//         res.json({
+//             sucess: true,
+//             message: 'Image was uploaded successfully'
+//         });
+//         // Everything went fine
+//         console.log('file uploaded successfully');
+//     })
+// });
 
-router.get('/get_avatar', function(req, res, next) {
-    User.getUserByUsername(function(err, username) {
-        if (err) console.log(err);
-        res.json(username);
-        console.log("get avatar function : ")
-        console.log(username);
-    });
+router.get('/get_avatar/:username', function(req, res) {
+    res.json({ path: 'http://localhost:3000/uploads/' + req.params.username + '-avatar.jpg' });
 });
 
 router.post('/setProfilePic', function(req, res, next) {
@@ -133,6 +126,17 @@ router.post('/addImage', function(req, res, next) {
 
 });
 
+router.post('/updateAvatar', function(req, res, next) {
+    User.updateAvatar(req.body.username, req.body.url, function(err, doc) {
+        if (err) {
+            throw err;
+        }
+        if (!doc) {
+            return res.json({ sucess: false, msg: 'file not found' });
+        }
+        res.json({ success: 'true', msg: 'avatar url was saved to MongoDB', url: req.body.url })
+    });
+});
 
 router.post('/addFriend', function(req, res, next) {
 

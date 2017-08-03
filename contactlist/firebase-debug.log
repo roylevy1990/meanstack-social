@@ -1,0 +1,36 @@
+[debug] [2017-07-29T20:34:43.139Z] ----------------------------------------------------------------------
+[debug] [2017-07-29T20:34:43.142Z] Command:      C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-07-29T20:34:43.142Z] CLI Version:  3.9.1
+[debug] [2017-07-29T20:34:43.142Z] Platform:     win32
+[debug] [2017-07-29T20:34:43.142Z] Node Version: v6.9.4
+[debug] [2017-07-29T20:34:43.143Z] Time:         Sat Jul 29 2017 23:34:43 GMT+0300 (Jerusalem Daylight Time)
+[debug] [2017-07-29T20:34:43.143Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-07-29T20:34:43.157Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-07-29T20:34:43.157Z] > authorizing via signed-in user
+[debug] [2017-07-29T20:34:43.160Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-07-29T20:34:43.160Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/CLykOks5X1sdOG2Ryu79W7gjUUD3mYvRjngYGp2hw6-DO0lx3k_ygGp0GDlgBNs_',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Jul 29 2017 23:34:43 GMT+0300 (Jerusalem Daylight Time)
+[debug] [2017-07-29T20:34:43.681Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-29T20:34:43.688Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/dobble-e1c3e  
+ Sat Jul 29 2017 23:34:43 GMT+0300 (Jerusalem Daylight Time)
+[debug] [2017-07-29T20:34:44.602Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-29T20:34:44.603Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/dobble-e1c3e/tokens  
+ Sat Jul 29 2017 23:34:44 GMT+0300 (Jerusalem Daylight Time)
+[debug] [2017-07-29T20:34:45.624Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\admin\Desktop\project\contactlist'...
+[info] 
+[debug] [2017-07-29T20:34:45.629Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/dobble-e1c3e  
+ Sat Jul 29 2017 23:34:45 GMT+0300 (Jerusalem Daylight Time)
+[debug] [2017-07-29T20:34:46.803Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-29T20:34:46.804Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/626821357079/clients/_:getWebAppConfig  
+ Sat Jul 29 2017 23:34:46 GMT+0300 (Jerusalem Daylight Time)
+[debug] [2017-07-29T20:34:48.001Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-29T20:34:48.032Z] TypeError: Cannot read property 'public' of undefined
+[error] 
+[error] Error: An unexpected error has occurred.
