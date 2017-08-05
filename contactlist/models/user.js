@@ -23,23 +23,16 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     avatar: {
-        url: String
+        type: String
     },
-    friends_list: {
-        type: []
-    }
-
+    friends_list: []
 });
 
 // mongodb://localhost:27017/contactlist
 const User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.updateAvatar = function(username, url, callback) {
-    User.findOneAndUpdate({ username: username }, { $set: { url: url } }, { new: true }, function(err, doc) {
-        if (err) {
-            console.log("couldnt update avatar for username " + username);
-        }
-    })
+    User.findOneAndUpdate({ username: username }, { $set: { avatar: url } }, { new: true }, callback);
 }
 
 
@@ -55,9 +48,7 @@ module.exports.getUserByUsername = function(username, callback) {
 
 module.exports.addUser = (newUser, callback) => {
     bcrypt.genSalt(10, (err, salt) => {
-        console.log("in genSalt...")
         bcrypt.hash(newUser.password, salt, function(err, hash) {
-            console.log("in hash....")
             if (err) throw err;
             newUser.password = hash;
             newUser.save(callback);
