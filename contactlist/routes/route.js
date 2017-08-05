@@ -126,17 +126,22 @@ router.post('/addImage', function(req, res, next) {
 
 });
 
-router.post('/updateAvatar', function(req, res, next) {
-    User.updateAvatar(req.body.username, req.body.url, function(err, doc) {
-        if (err) {
-            throw err;
-        }
-        if (!doc) {
-            return res.json({ sucess: false, msg: 'file not found' });
-        }
-        res.json({ success: 'true', msg: 'avatar url was saved to MongoDB', url: req.body.url })
-    });
-});
+router.post('/updateAvatar', (function(req, res, next) {
+        console.log(req.body);
+        const username = req.body.username;
+        const url = req.body.avatar;
+        User.updateAvatar(username, url, function(err, doc) {
+            if (err) {
+                throw err;
+            }
+            if (!doc) {
+                res.json({ success: 'false', msg: 'file not found' });
+            }
+        });
+        res.json({ success: 'true', msg: 'url: ' + req.body.avatar })
+    }
+
+));
 
 router.post('/addFriend', function(req, res, next) {
 
